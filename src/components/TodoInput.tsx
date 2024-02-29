@@ -1,9 +1,7 @@
-export default function TodoInput({
-  inputText,
-  addTodo,
-  clearTodos,
-  setInputText,
-}: InputTodoProps) {
+import { useTodoStore } from "@/app/stores/todoStore";
+
+export default function TodoInput() {
+  const { inputText, setInputText, addTodo, clearTodos } = useTodoStore()
   return (
     <div className="flex items-center">
       <input

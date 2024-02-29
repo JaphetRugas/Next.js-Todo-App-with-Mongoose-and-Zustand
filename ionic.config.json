@@ -1,0 +1,7 @@
+{
+  "name": "todolist-next-zustand",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

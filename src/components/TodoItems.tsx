@@ -1,12 +1,7 @@
-import React from "react";
+import { useTodoStore } from "@/app/stores/todoStore";
 
-export default function TodoItems({
-  todo,
-  handleCheckboxChange,
-  setEditMode,
-  setEditedTodo,
-  deleteTodo,
-}: ListTodoProps) {
+export default function TodoItems({ todo }: { todo: Todo}) {
+  const { handleCheckboxChange, setEditMode, setEditedTodo, deleteTodo } = useTodoStore() 
   return (
     <div className="flex items-center justify-between w-96 bg-white rounded-md mt-2 p-4 shadow-md transition duration-300 ease-in-out transform hover:scale-105">
       <div className="flex items-center gap-4">

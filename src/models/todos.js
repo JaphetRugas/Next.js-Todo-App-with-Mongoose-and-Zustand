@@ -14,6 +14,10 @@ const TodosSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    createdAt: {
+        type: Date,
+        default: Date.now 
+    }
 })
 
 const Todo = mongoose.models.todos || mongoose.model("todos", TodosSchema)

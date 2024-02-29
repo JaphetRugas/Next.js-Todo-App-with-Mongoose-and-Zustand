@@ -7,7 +7,7 @@ connect();
 
 export async function GET(request: NextRequest) {
     try {
-        const todos = await Todo.find({});
+        const todos = await Todo.find({}).sort({ createdAt: -1 });
 
         return NextResponse.json({ msg: "Found all todos", success: true, todos })
     } catch (error) {

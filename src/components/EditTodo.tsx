@@ -1,11 +1,7 @@
-import React from "react";
+import { useTodoStore } from "@/app/stores/todoStore";
 
-export default function EditTodo({
-  editedTodo,
-  setEditedTodo,
-  updateTodo,
-}:EditedTodoProps
-) {
+export default function EditTodo() {
+  const { editedTodo, setEditedTodo, updateTodo } = useTodoStore();
   return (
     <div className="flex flex-col items-center gap-8 pt-8 bg-gray-100 pb-32">
       <div className="text-3xl font-bold text-gray-800">Edit Todo</div>
@@ -17,15 +13,16 @@ export default function EditTodo({
           type="text"
           id="editDesc"
           placeholder="Enter new description"
-          value={editedTodo.desc}
-          onChange={(e) =>
-            setEditedTodo((prevTodo) => ({
-              ...(prevTodo || { id: "", desc: "", completed: false }),
-              id: prevTodo ? prevTodo.id : "",
-              desc: e.target.value,
-            }))
-          }
           className="border border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          value={editedTodo?.desc} 
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            if (editedTodo) {
+              setEditedTodo({
+                ...editedTodo,
+                desc: e.target.value,
+              });
+            }
+          }}
         />
       </div>
       <div className="flex flex-col items-start">
@@ -35,14 +32,16 @@ export default function EditTodo({
         <input
           type="checkbox"
           id="editCompleted"
-          checked={editedTodo.completed}
-          className="h-5 w-5 text-gray-800 mt-2"
-          onChange={(e) =>
-            setEditedTodo((prevTodo: Todo | null) => ({
-              ...(prevTodo || { id: "", desc: "", completed: false }),
-              completed: e.target.checked,
-            }))
-          }
+          className="h-5 w-5 text-gray-800 mt-2" 
+          checked={editedTodo?.completed}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            if (editedTodo) {
+              setEditedTodo({
+                ...editedTodo,
+                completed: e.target.checked,
+              });
+            }
+          }}
         />
       </div>
       <button
